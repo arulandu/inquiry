@@ -47,9 +47,17 @@ a {
 
 main {
   height: 100vh;
+
+}
+
+/* HERO */
+
+.hero {
   display: flex;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
 .tag {
@@ -64,6 +72,40 @@ main {
 
 .tag p {
   margin-top: 0.5rem;
+}
+
+/* Journal */
+.category {
+  margin: 2rem;
+  padding: 1rem;
+}
+
+.category-title {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.entries {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.entry {
+  position: relative;
+  margin: 0.5rem;
+  padding: 1rem;
+  width: 30rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.entry .date {
+  margin-bottom: 1rem;
+  color: black;
+}
+
+.entry .date::before {
+  content: "Posted On: ";
 }
 
 /* CITATION */
