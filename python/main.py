@@ -17,5 +17,5 @@ for root, dirs, files in os.walk('./md'):
         })
       
 with open('./md/dir.json', 'w+') as f:
-  json.dump({'categories': [{'name': k, 'files': d[k]} for k in d]}, f)
+  json.dump({'categories': [{'name': k, 'files': sorted(d[k], key=lambda x: x['path'], reverse=True)} for k in d]}, f)
           
