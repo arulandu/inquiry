@@ -16,13 +16,20 @@ const main = async () => {
   }
 
   const viewer = document.getElementsByClassName("viewer")[0]
+  const nav = document.getElementsByClassName("nav")[0]
+
   for(let category of d.categories){
-    const div = document.createElement("div"); div.classList.add("category");
+    const div = document.createElement("div"); div.classList.add("category"); 
 
     const title = document.createElement("h1"); title.classList.add("category-title");
-    title.innerHTML = category.name[0].toUpperCase() + category.name.substring(1);
+    const titleName = category.name[0].toUpperCase() + category.name.substring(1);
+    title.innerHTML = titleName;
     div.appendChild(title)
-    
+
+    div.id = titleName;
+    const navLink = document.createElement("a"); navLink.id = titleName; navLink.href = "#" + titleName; navLink.innerHTML = titleName;
+    nav.appendChild(navLink)
+
     const entries = document.createElement("div"); entries.classList.add("entries");
     div.appendChild(entries)
 

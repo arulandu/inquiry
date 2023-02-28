@@ -74,6 +74,16 @@ main {
   margin-top: 0.5rem;
 }
 
+.tag .nav {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-top: 1rem;
+}
+
+.tag .nav a {
+  margin-right: 1rem;
+}
+
 /* Journal */
 .category {
   margin: 2rem;
