@@ -7,6 +7,7 @@
   font-weight: 1 999;
 }
 
+*,
 html,
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
@@ -28,6 +29,30 @@ ul, ol {
   border: 0;
   outline: 0;
   box-sizing: border-box;
+}
+
+/* Coloring */
+
+.Daily,.Reflection,.Classwork,.All {
+  --sat: 100%;
+  --light: 50%;
+  --alpha: 0.5;
+}
+
+.All {
+  --hue: 287.5;
+}
+
+.Daily {
+  --hue: 200;
+}
+
+.Classwork {
+  --hue: 25;
+}
+
+.Reflection {
+  --hue: 112.5;
 }
 
 /* Background */
@@ -78,26 +103,28 @@ main {
   margin-top: 0.5rem;
 }
 
-.tag .nav {
+.nav {
+  width: fit-content;
+  margin: 1rem auto 0 auto;
   display: flex;
   flex-flow: row nowrap;
-  margin-top: 1rem;
 }
 
-.tag .nav a {
+.nav button {
+  cursor: pointer;
   margin-right: 1rem;
+  color: black;
+  background-color: hsla(var(--hue), var(--sat), var(--light), var(--alpha));
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease-in 0s;
+}
+
+.nav button:hover {
+  --alpha: 0.75;
 }
 
 /* Journal */
-.category {
-  margin: 2rem;
-  padding: 1rem;
-}
-
-.category-title {
-  text-align: center;
-  text-decoration: underline;
-}
 
 .entries {
   margin-top: 1rem;
@@ -116,8 +143,24 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.entry .date {
+.entry .meta {
   margin-bottom: 1rem;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.entry .category {
+  margin:0;
+  color: black;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background-color: hsla(var(--hue), var(--sat), var(--light), var(--alpha));
+}
+
+.entry .date {
   color: black;
 }
 

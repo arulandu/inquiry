@@ -7,47 +7,60 @@ VANTA.CLOUDS({
   minWidth: 200.00,
 })
 
+let data = null
 const main = async () => {
   const d = await (await fetch('/md/dir.json')).json()
-  for(let category of d.categories) {
-    for(let i = 0; i < category.files.length; i++){
-      category.files[i].data = DOMPurify.sanitize(marked.parse(category.files[i].data))
-    }
+  for (let i = 0; i < d.files.length; i++) {
+    d.files[i].data = DOMPurify.sanitize(marked.parse(d.files[i].data))
   }
 
-  const viewer = document.getElementsByClassName("viewer")[0]
+  data = d;
+
   const nav = document.getElementsByClassName("nav")[0]
 
-  for(let category of d.categories){
-    const div = document.createElement("div"); div.classList.add("category"); 
-
-    const title = document.createElement("h1"); title.classList.add("category-title");
-    const titleName = category.name[0].toUpperCase() + category.name.substring(1);
-    title.innerHTML = titleName;
-    div.appendChild(title)
-
-    div.id = titleName;
-    const navLink = document.createElement("a"); navLink.id = titleName; navLink.href = "#" + titleName; navLink.innerHTML = titleName;
-    nav.appendChild(navLink)
-
-    const entries = document.createElement("div"); entries.classList.add("entries");
-    div.appendChild(entries)
-
-    for(let file of category.files){
-      const entry = document.createElement("div"); entry.classList.add("entry");
-      const content = document.createElement("div"); content.innerHTML = DOMPurify.sanitize(marked.parse(file.data));
-      const date = document.createElement("p"); date.classList.add("date"); date.innerHTML = file.date;
-      
-      entry.appendChild(date)
-      entry.appendChild(content)
-
-      entries.appendChild(entry)
-    }
-    
-    viewer.appendChild(div)
+  let categories = new Set()
+  categories.add("All")
+  for (let file of data.files) {
+    categories.add(file.category)
   }
+
+  for (let category of categories) {
+    const titleName = category[0].toUpperCase() + category.substring(1);
+
+    const navLink = document.createElement("button"); navLink.classList.add(titleName); navLink.id = titleName; navLink.innerHTML = titleName;
+    navLink.onclick = () => {
+      populate(category=titleName)
+    }
+    // navLink.addEventListener("click", )
+    nav.appendChild(navLink)
+  }
+
+  await populate(category="All")
+}
+
+const populate = async (category="All") => {
+  const viewer = document.getElementsByClassName("viewer")[0]
+  viewer.innerHTML = ""
+  
+  const entries = document.createElement("div"); entries.classList.add("entries");
+
+  for (let file of data.files) {
+    const titleName = file.category[0].toUpperCase() + file.category.substring(1);
+    if(category != "All" && category != titleName) continue;
+
+    const entry = document.createElement("div"); entry.classList.add("entry");
+    const content = document.createElement("div"); content.innerHTML = DOMPurify.sanitize(marked.parse(file.data));
+    const meta = document.createElement("div"); meta.classList.add("meta");
+    const cat = document.createElement("p"); cat.classList.add("category"); cat.classList.add(titleName); cat.innerHTML = titleName;
+    const date = document.createElement("p"); date.classList.add("date"); date.innerHTML = file.date;
+    meta.appendChild(date); meta.appendChild(cat);
+
+    entry.appendChild(meta)
+    entry.appendChild(content)
+    entries.appendChild(entry)
+  }
+
+  viewer.appendChild(entries)
 }
 
 main()
-
-// document.getElementById('content').innerHTML = DOMPurify.sanitize(marked.parse(`# Marked in the browser\n\nRendered by **marked**.`));
