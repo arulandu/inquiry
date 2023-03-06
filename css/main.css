@@ -103,6 +103,12 @@ main {
   margin-top: 0.5rem;
 }
 
+/* Journal */
+
+.journal {
+  min-height: 100vh;
+}
+
 .nav {
   width: fit-content;
   margin: 1rem auto 0 auto;
@@ -124,7 +130,6 @@ main {
   --alpha: 0.75;
 }
 
-/* Journal */
 
 .entries {
   margin-top: 1rem;
