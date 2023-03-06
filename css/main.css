@@ -18,6 +18,10 @@ a {
   text-decoration: none;
 }
 
+ul, ol {
+  list-style-position: inside;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -98,8 +102,11 @@ main {
 .entries {
   margin-top: 1rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: start;
 }
+
 .entry {
   position: relative;
   margin: 0.5rem;
