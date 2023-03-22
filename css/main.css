@@ -173,6 +173,10 @@ main {
   content: "Posted On: ";
 }
 
+.entry .content > * {
+  margin: 1rem 0;
+}
+
 /* CITATION */
 footer {
   margin: 0 auto 8px auto;

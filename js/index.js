@@ -49,7 +49,7 @@ const populate = async (category="All") => {
     if(category != "All" && category != titleName) continue;
 
     const entry = document.createElement("div"); entry.classList.add("entry");
-    const content = document.createElement("div"); content.innerHTML = DOMPurify.sanitize(marked.parse(file.data));
+    const content = document.createElement("div"); content.classList.add("content"); content.innerHTML = DOMPurify.sanitize(marked.parse(file.data));
     const meta = document.createElement("div"); meta.classList.add("meta");
     const cat = document.createElement("p"); cat.classList.add("category"); cat.classList.add(titleName); cat.innerHTML = titleName;
     const date = document.createElement("p"); date.classList.add("date"); date.innerHTML = file.date;
