@@ -1,2 +1,2 @@
-# inquiry-into-ideas
-Classwork for TJ's Inquiry Into Ideas class. 
+# Inquiry
+Classwork for TJ's Inquiry Into Ideas class.
